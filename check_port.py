@@ -3,7 +3,8 @@ import re
 
 
 def search_ip_port(line):
-    result = re.match(r'\d{1,5} to:\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}', line)
+    pattern = r'\d{1,5} to:\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}'
+    result = re.search(pattern, line)
     print(result.group(0))
 
 def get_list_enable_proxy():
