@@ -39,10 +39,22 @@ def create_new_rule(ip,port):
         else:
             break
     command = f'iptables -t nat -A PREROUTING -p tcp --dport {new_port} -j DNAT --to-destination {ip}:{port}'
-    print(command)
+    return os.system(command)
 
 
 
 
 if __name__ == "__main__":
-    create_new_rule('99.99.99.99','7777')
+    num = input("1. create rule\n2. list rule\n-> ")
+    if num == '1':
+        port = input('port ')
+        ip = input('ip ')
+        res = create_new_rule(ip,port)
+        if res == 0:
+            print('+')
+        else:
+            print('error')
+    elif num == '2':
+        rules = get_list_enable_proxy()
+        for rule in rules:
+            print(f'internal port: {rule.internal_port} ip: {rule.ip} port {rule.port}')
