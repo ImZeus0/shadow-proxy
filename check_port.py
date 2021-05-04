@@ -57,4 +57,4 @@ if __name__ == "__main__":
     elif num == '2':
         rules = get_list_enable_proxy()
         for rule in rules:
-            print(f'internal port: {rule.internal_port} ip: {rule.ip} port {rule.port}')
+            print(f'internal port: {rule.internal_port} ip: {rule.ip} port {rule.port}\n')
