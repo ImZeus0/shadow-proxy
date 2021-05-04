@@ -18,9 +18,17 @@ def get_list_enable_proxy():
             line = search_ip_port(line)
             params = line.split(':')
             res_list.append(Proxy(params[1],params[2],params[0][:-2]))
-            print(res_list[0].print_info())
+            return res_list
+
+def get_internal_ports():
+    res_list = []
+    proxys = get_list_enable_proxy()
+    for proxy in proxys:
+        res_list.append(proxy.internal_port)
+    return res_list
+
 
 
 
 if __name__ == "__main__":
-    get_list_enable_proxy()
+    print(get_internal_ports())
