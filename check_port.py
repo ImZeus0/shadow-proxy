@@ -1,7 +1,10 @@
 import subprocess
+import re
 
 
-
+def search_ip_port(line):
+    result = re.match(r'\d{1,5} to:\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}:\d{1,5}', line)
+    print(result.group(0))
 
 def get_list_enable_proxy():
     data = subprocess.check_output(['iptables', '-t', 'nat', '-L', '--line-numbers', '-n'])
@@ -9,7 +12,9 @@ def get_list_enable_proxy():
     lines_data = data.split('\n')
     for line in lines_data:
         if 'dpt' in line:
-            print(line)
+            search_ip_port(line)
+
+
 
 if __name__ == "__main__":
     get_list_enable_proxy()
