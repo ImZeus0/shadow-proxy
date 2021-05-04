@@ -39,9 +39,18 @@ def create_new_rule(ip,port):
         else:
             break
     command = f'iptables -t nat -A PREROUTING -p tcp --dport {new_port} -j DNAT --to-destination {ip}:{port}'
-    return os.system(command)
-
-
+    res = os.system(command)
+    if res == 0:
+        return new_port
+    else:
+        return 1
+"""
+def delete_offline(index):
+    proxys = get_list_enable_proxy()
+    i = 0
+    while i < len(proxys):
+        if proxys[i] == index
+"""
 
 
 if __name__ == "__main__":
