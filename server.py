@@ -5,7 +5,7 @@ async def handler(request):
     if request.body_exists:
         data_b = await request.read()
         data = json.loads(str(data_b.decode('utf-8')))
-        print(data)
+        print(data['number'])
     return web.json_response({"ok": 1})
 
 app = web.Application()
