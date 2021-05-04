@@ -16,12 +16,11 @@ def get_list_enable_proxy():
     data = data.decode('utf-8')
     lines_data = data.split('\n')
     for line in lines_data:
-        print('-'+line)
         if 'dpt' in line:
             line = search_ip_port(line)
             params = line.split(':')
             res_list.append(Proxy(params[1],params[2],int(params[0][:-3])))
-            return res_list
+    return res_list
 
 def get_internal_ports():
     res_list = []
