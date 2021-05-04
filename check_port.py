@@ -31,13 +31,15 @@ def get_internal_ports():
 
 def create_new_rule(ip,port):
     internal_ports = get_internal_ports()
-    #new_port = random.randint(500,65000)
-    new_port = 444
-    if new_port in internal_ports:
-        print("port X")
-    else:
-        command = f'iptables -t nat -A PREROUTING -p tcp --dport {new_port} -j DNAT --to-destination {ip}:{port}'
-        print(command)
+    new_port = 0
+    while True:
+        new_port = random.randint(500,65000)
+        if new_port in internal_ports:
+            continue
+        else:
+            break
+    command = f'iptables -t nat -A PREROUTING -p tcp --dport {new_port} -j DNAT --to-destination {ip}:{port}'
+    print(command)
 
 
 
