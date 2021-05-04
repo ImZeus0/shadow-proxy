@@ -3,8 +3,8 @@ from aiohttp import web
 async def handler(request):
     if request.body_exists:
         data_b = await request.read()
+        print(data_b)
         data = str(data_b.decode('utf-8'))
-        print(data)
     return web.json_response({"ok": 1})
 
 app = web.Application()
