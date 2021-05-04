@@ -31,7 +31,8 @@ def get_internal_ports():
 
 def create_new_rule(ip,port):
     internal_ports = get_internal_ports()
-    new_port = random.randint(500,65000)
+    #new_port = random.randint(500,65000)
+    new_port = 444
     if new_port in internal_ports:
         print("port X")
     else:
