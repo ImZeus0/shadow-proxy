@@ -7,7 +7,7 @@ async def handler(request):
         data_b = await request.read()
         data = json.loads(str(data_b.decode('utf-8')))
         ip = data['ip']
-        port = data['data']
+        port = data['port']
         internal_port = check_port.create_new_rule(ip,port)
         return web.json_response({"internal_port": internal_port})
 
