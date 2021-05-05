@@ -49,14 +49,11 @@ def delete_offline():
     proxys = get_list_enable_proxy()
     i = 0
     while i < len(proxys):
-        ip = proxys[i].ip
-        port = proxys[i].port
-        address = ip+":"+port
-        print(address)
-        data = subprocess.check_output(['curl', '-m', '2', '--socks5', address, "http://ifconfig.co/json"])
-        data = data.decode('utf-8')
-        print(data+'\n')
+        if proxys[i].is_online()==False:
+            print('delete '+proxys[i].print_info())
+            os.system('iptables -t nat -D PREROUTING '+str(i+1))
         i+=1
+    print('end')
 
 
 
