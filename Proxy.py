@@ -13,7 +13,7 @@ class Proxy():
     def is_online(self):
         try:
             address = self.ip+":"+self.port
-            data = subprocess.check_output(['curl', '-m', '2', '--socks5', address, "http://ifconfig.co/json"])
+            data = subprocess.check_output(['curl', '-m', '5', '--socks5', address, "http://ifconfig.co/json"])
             return True
         except:
             return False
