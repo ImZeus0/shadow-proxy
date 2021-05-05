@@ -44,13 +44,18 @@ def create_new_rule(ip,port):
         return new_port
     else:
         return 1
-"""
-def delete_offline(index):
+
+def delete_offline():
     proxys = get_list_enable_proxy()
     i = 0
     while i < len(proxys):
-        if proxys[i] == index
-"""
+        ip = proxys[i].ip
+        port = proxys[i].port
+        data = subprocess.check_output(['curl', '-m', '2', '--socks5', ip+":"+port, ' http://ifconfig.co/json'])
+        data = data.decode('utf-8')
+        print(data+'\n')
+        i+=1
+
 
 
 if __name__ == "__main__":
@@ -67,3 +72,5 @@ if __name__ == "__main__":
         rules = get_list_enable_proxy()
         for rule in rules:
             print(f'internal port: {rule.internal_port} ip: {rule.ip} port {rule.port}\n')
+    elif num == '3':
+        delete_offline()
