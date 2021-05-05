@@ -51,7 +51,9 @@ def delete_offline():
     while i < len(proxys):
         ip = proxys[i].ip
         port = proxys[i].port
-        data = subprocess.check_output(['curl', '-m', '2', '--socks5', ip+":"+port, ' http://ifconfig.co/json'])
+        address = ip+":"+port
+        print(address)
+        data = subprocess.check_output(['curl', '-m', '2', '--socks5', address, ' http://ifconfig.co/json'])
         data = data.decode('utf-8')
         print(data+'\n')
         i+=1
