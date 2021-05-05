@@ -49,6 +49,7 @@ def delete_offline():
     proxys = get_list_enable_proxy()
     i = 0
     while i < len(proxys):
+        print(str(i),len(proxys))
         print(proxys[i].print_info())
         if proxys[i].is_online()==False:
             print('delete '+str(i+1))
