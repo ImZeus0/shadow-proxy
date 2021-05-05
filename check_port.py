@@ -50,7 +50,7 @@ def delete_offline():
     i = 0
     while i < len(proxys):
         if proxys[i].is_online()==False:
-            print('delete '+str(i))
+            print('delete '+str(i+1))
             os.system('iptables -t nat -D PREROUTING '+str(i+1))
         i+=1
     print('end')
