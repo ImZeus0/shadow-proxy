@@ -1,12 +1,15 @@
 from aiohttp import web
 import json
+import check_port
 
 async def handler(request):
     if request.body_exists:
         data_b = await request.read()
         data = json.loads(str(data_b.decode('utf-8')))
-        print(data['number'])
-    return web.json_response({"ok": 1})
+        ip = data['ip']
+        port = data['data']
+        internal_port = check_port.create_new_rule(ip,port)
+        return web.json_response({"internal_port": internal_port})
 
 app = web.Application()
 app.add_routes([web.view('/', handler)])
